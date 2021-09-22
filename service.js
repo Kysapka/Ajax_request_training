@@ -13,14 +13,35 @@ function getImages(pageNumber) {
 }
 
 function getTasks() {
-    const promise =  axios.get('https://repetitora.net/api/JS/Tasks?widgetId=2134')
+    const promise =  axios.get('https://repetitora.net/api/JS/Tasks?widgetId=2134&count=30')
     return promise.then((response) => {
         return response.data;
     });
 }
 
 function createTasks(title) {
-    const promise =  axios.post(`https://repetitora.net/api/JS/Tasks?widgetId=2134&title=${title}`)
+    const promise =  axios.post('https://repetitora.net/api/JS/Tasks', {
+        widgetId: 2134,
+        title,
+    })
+    return promise.then((response) => {
+        return response.data;
+    });
+}
+
+function updateTasks(tId, title) {
+    const promise =  axios.put('https://repetitora.net/api/JS/Tasks', {
+        widgetId: 2134,
+        taskId: tId,
+        title,
+    })
+    return promise.then((response) => {
+        return response.data;
+    });
+}
+
+function deleteTask(id) {
+    const promise =  axios.delete(`https://repetitora.net/api/JS/Tasks?widgetId=2134&taskId=${id}`)
     return promise.then((response) => {
         return response.data;
     });

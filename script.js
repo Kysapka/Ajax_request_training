@@ -1,9 +1,11 @@
 
-const resultBlock = document.querySelector("#result");
 const pageNumberEl = document.querySelector("#page-number")
+const changeTitleEl = document.querySelector("#change-title")
 const getImagesButton = document.querySelector("#get-images");
 const getTasksButton = document.querySelector('#get-tasks')
 const createTasksButton = document.querySelector('#create-tasks')
+const updateTasksButton = document.querySelector('#update-tasks')
+const deleteTasksButton = document.querySelector('#delete-tasks')
 
 getImagesButton.addEventListener("click", () => {
     const promise = getImages(pageNumberEl.value);
@@ -19,6 +21,15 @@ createTasksButton.addEventListener("click", () => {
     createTasks('Learn CSS');
 });
 
+updateTasksButton.addEventListener("click", () => {
+    const title = changeTitleEl.value
+    updateTasks('fd0899ad-9831-4c72-9d87-db34816b111c',title);
+});
+
+deleteTasksButton.addEventListener("click", () => {
+    deleteTask('bc13c5c3-954c-49cc-be45-8e2704915f3e');
+});
+
 function onImagesReceived(images) {
         images.forEach(image => {
             const img = document.createElement('img')
@@ -28,10 +39,12 @@ function onImagesReceived(images) {
 }
 
 function onTasksReceived(tasks) {
+    const result = document.querySelector("#tasks-result");
+    result.innerHTML = '';
     tasks.forEach(task => {
         const li = document.createElement('li')
         li.innerHTML = task.title;
-        document.querySelector("#result").appendChild(li)
+        result.appendChild(li)
     });
 }
 
