@@ -9,12 +9,21 @@
     <title><h1>AJAX REQUEST TRAINING</h1></title>
 </head>
 <body>
+
 <h1>TRAINING AJAX REQUEST</h1>
 Номер страницы: <input type="number" value="" id="page-number"/>
-<button id="click-me">ClickMe</button>
+<button id="get-images">Get Images</button>
+
+<button id="get-tasks">Get Tasks</button>
+<button id="create-tasks">Create Tasks</button>
+
+<ul id="tasks-result"></ul>
+
 <div id="result"></div>
 
 </body>
-<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="service.js"></script>
 <script src="script.js"></script>
 </html>

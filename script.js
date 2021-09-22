@@ -1,29 +1,39 @@
 
 const resultBlock = document.querySelector("#result");
-const clickMeButton = document.querySelector("#click-me");
-clickMeButton.addEventListener("click", makeRequest);
+const pageNumberEl = document.querySelector("#page-number")
+const getImagesButton = document.querySelector("#get-images");
+const getTasksButton = document.querySelector('#get-tasks')
+const createTasksButton = document.querySelector('#create-tasks')
 
-pageNumberEl = document.querySelector("#page-number")
+getImagesButton.addEventListener("click", () => {
+    const promise = getImages(pageNumberEl.value);
+    promise.then(onImagesReceived)
+});
 
+getTasksButton.addEventListener("click", () => {
+    const promise = getTasks();
+    promise.then(onTasksReceived)
+});
 
+createTasksButton.addEventListener("click", () => {
+    createTasks('Learn CSS');
+});
 
-function makeRequest() {
-    let baseUrl = 'https://repetitora.net/api/JS/Images'
-    $.ajax(`${baseUrl}?page=${pageNumberEl.value}`, {
-        success: (data) => {
-            data.forEach(el => {
-                const img = document.createElement('img')
-                img.src = el.thumbnail;
-                document.querySelector("#result").appendChild(img)
-            })
-        }
-    });
+function onImagesReceived(images) {
+        images.forEach(image => {
+            const img = document.createElement('img')
+            img.src = image.thumbnail;
+            document.querySelector("#tasks-result").appendChild(img)
+        });
 }
 
-
-
-
-
+function onTasksReceived(tasks) {
+    tasks.forEach(task => {
+        const li = document.createElement('li')
+        li.innerHTML = task.title;
+        document.querySelector("#result").appendChild(li)
+    });
+}
 
 // let xhr = new XMLHttpRequest();
 // console.log('new xhr', xhr)
